@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陸中建設株式会社</title>
+<meta name="description" content="岩手県宮古市にある建設会社です。事業を通じて地域・人びとの「願いを築く」ことが私たちの使命です">
+<meta property="og:site_name" content="岩手県宮古市の建設会社｜陸中建設株式会社">
+<meta property="og:title" content="陸中建設株式会社">
+<meta property="og:description" content="岩手県宮古市にある建設会社です。事業を通じて地域・人びとの「願いを築く」ことが私たちの使命です">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://storage.googleapis.com/production-os-assets/assets/78f88fd5-5ef7-417b-ac86-f980ee023498">
+<!--
+  陸中建設株式会社 コーポレートサイト トップページ プロトタイプ（見本）
+  運用方針A：この見本を元に及川さんが STUDIO 上で再現・公開する（HTMLの直接反映はしない）。
+  ・ブランドカラー／ロゴは docs/brand-guide.md の確定値に準拠。
+  ・画像・お知らせ・施工実績はプレースホルダ。STUDIO側で実データ（CMS）に差し替える。
+  ・数字（資本金・売上・従業員数）は未確認のため断定表示しない（会社情報への導線のみ）。
+-->
+<style>
+  :root{
+    --c-primary:#F08200;   /* オレンジ（プライマリ） */
+    --c-primary-d:#d67400;
+    --c-secondary:#0097E0; /* ブルー（セカンダリ） */
+    --c-secondary-d:#007bb8;
+    --c-accent:#FFE67A;    /* イエロー（アクセント） */
+    --c-gray:#666464;      /* 補助グレー */
+    --c-ink:#2b2b2b;
+    --c-mute:#6b7075;
+    --c-line:#e7e9ec;
+    --c-bg:#ffffff;
+    --c-bg2:#f5f7f9;
+    --c-dark:#20272e;      /* フッター等の濃色 */
+    --maxw:1120px;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(20,30,40,.08);
+    --font:"Inter","Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);color:var(--c-ink);background:var(--c-bg);line-height:1.75;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"palt";}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ===== ボタン ===== */
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:700;
+    padding:.85em 1.6em;border-radius:999px;transition:.2s;white-space:nowrap;font-size:.98rem}
+  .btn-primary{background:var(--c-primary);color:#fff;box-shadow:0 6px 16px rgba(240,130,0,.32)}
+  .btn-primary:hover{background:var(--c-primary-d);transform:translateY(-2px)}
+  .btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.7);backdrop-filter:blur(2px)}
+  .btn-ghost:hover{background:rgba(255,255,255,.28)}
+  .btn-outline{background:#fff;color:var(--c-primary);border:1.5px solid var(--c-primary)}
+  .btn-outline:hover{background:var(--c-primary);color:#fff}
+  .btn-arrow::after{content:"→";font-weight:700}
+
+  /* ===== ヘッダー ===== */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--c-line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .logo img{height:44px;width:auto}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a.mn{font-weight:600;font-size:.95rem;color:var(--c-ink);position:relative;padding:.3em 0}
+  .nav-links a.mn::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;
+    background:var(--c-primary);transition:.25s}
+  .nav-links a.mn:hover{color:var(--c-primary)}
+  .nav-links a.mn:hover::after{width:100%}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .hamburger span{width:26px;height:2px;background:var(--c-ink);transition:.3s}
+
+  /* ===== ヒーロー ===== */
+  .hero{position:relative;min-height:82vh;display:flex;align-items:center;
+    background:url("../../assets/brand/葉月の宮古市_着彩_rgb02_200701.jpg") center 40%/cover no-repeat;color:#fff}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:linear-gradient(105deg,rgba(20,35,55,.72) 0%,rgba(20,35,55,.38) 45%,rgba(20,35,55,.12) 100%)}
+  .hero-inner{position:relative;z-index:2;padding:56px 0}
+  .hero .eyebrow{display:inline-block;font-weight:700;letter-spacing:.18em;font-size:.82rem;
+    background:var(--c-accent);color:#4a3a00;padding:.4em 1em;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:clamp(2.9rem,7vw,5.2rem);font-weight:800;letter-spacing:.04em;line-height:1.12;
+    text-shadow:0 2px 24px rgba(0,0,0,.35)}
+  .hero h1 .accent{color:var(--c-accent)}
+  .hero .lead{margin-top:20px;font-size:clamp(1rem,2.3vw,1.28rem);font-weight:500;
+    text-shadow:0 1px 12px rgba(0,0,0,.4);max-width:36em}
+  .hero .cta-row{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap}
+  .scroll-cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;
+    color:#fff;font-size:.72rem;letter-spacing:.2em;text-align:center;opacity:.85}
+  .scroll-cue span{display:block;width:1px;height:38px;background:#fff;margin:8px auto 0;animation:cue 1.8s infinite}
+  @keyframes cue{0%{transform:scaleY(.2);transform-origin:top;opacity:.3}50%{transform:scaleY(1);opacity:1}100%{transform:scaleY(.2);transform-origin:bottom;opacity:.3}}
+
+  /* ===== セクション共通 ===== */
+  section{padding:96px 0}
+  .sec-head{margin-bottom:52px}
+  .sec-head .en{display:block;color:var(--c-primary);font-weight:800;letter-spacing:.16em;font-size:.85rem;text-transform:uppercase}
+  .sec-head h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;margin-top:8px;letter-spacing:.03em}
+  .sec-head h2 .bar{display:inline-block;width:.5em;height:.5em;background:var(--c-accent);border-radius:2px;margin-right:.35em;vertical-align:middle}
+  .center{text-align:center}
+  .center .sec-head h2{}
+
+  /* ===== 理念帯 ===== */
+  .philo{background:var(--c-bg2)}
+  .philo .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+  .philo .lead-box{border-left:6px solid var(--c-accent);padding-left:26px}
+  .philo h2{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;line-height:1.4;letter-spacing:.04em}
+  .philo h2 em{font-style:normal;color:var(--c-primary)}
+  .philo p{margin-top:22px;color:var(--c-mute);font-size:1.02rem}
+  .philo .pic{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3;
+    background:linear-gradient(135deg,#eef3f7,#dfe7ee) center/cover}
+  .philo .pic img{width:100%;height:100%;object-fit:cover}
+
+  /* ===== 事業カード ===== */
+  .biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .biz-card{background:#fff;border:1px solid var(--c-line);border-radius:var(--radius);padding:34px 28px;
+    transition:.25s;position:relative;overflow:hidden}
+  .biz-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;
+    background:linear-gradient(90deg,var(--c-primary),var(--c-secondary));transform:scaleX(0);transform-origin:left;transition:.3s}
+  .biz-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+  .biz-card:hover::before{transform:scaleX(1)}
+  .biz-ico{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    background:#fff5ea;margin-bottom:18px}
+  .biz-ico svg{width:30px;height:30px}
+  .biz-card h3{font-size:1.24rem;font-weight:700;margin-bottom:8px}
+  .biz-card p{color:var(--c-mute);font-size:.95rem;margin-bottom:16px}
+  .biz-card .more{color:var(--c-primary);font-weight:700;font-size:.9rem}
+  .biz-card .more::after{content:" →"}
+
+  /* ===== 施工実績 ===== */
+  .works{background:var(--c-bg2)}
+  .works-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:44px}
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .work-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px rgba(20,30,40,.06);transition:.25s}
+  .work-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .work-thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#cfd8e0,#aab6c2);position:relative;display:flex;align-items:center;justify-content:center}
+  .work-thumb span{color:#fff;font-weight:700;letter-spacing:.1em;font-size:.8rem;opacity:.9}
+  .work-body{padding:20px 22px}
+  .work-tag{display:inline-block;font-size:.72rem;font-weight:700;color:#fff;background:var(--c-secondary);padding:.25em .8em;border-radius:999px;margin-bottom:10px}
+  .work-body h3{font-size:1.05rem;font-weight:700}
+  .work-body time{display:block;color:var(--c-mute);font-size:.82rem;margin-top:6px}
+
+  /* ===== 採用CTA帯 ===== */
+  .recruit{background:linear-gradient(115deg,var(--c-primary) 0%,var(--c-primary-d) 40%,var(--c-secondary) 100%);
+    color:#fff;position:relative;overflow:hidden}
+  .recruit::after{content:"";position:absolute;right:-80px;top:-80px;width:340px;height:340px;
+    border-radius:50%;background:rgba(255,255,255,.10)}
+  .recruit .wrap{display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;position:relative;z-index:2}
+  .recruit .en{color:var(--c-accent);font-weight:800;letter-spacing:.16em;font-size:.85rem}
+  .recruit h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;margin-top:8px;line-height:1.3}
+  .recruit p{margin-top:14px;max-width:34em;opacity:.95}
+  .recruit .btn-white{background:#fff;color:var(--c-primary)}
+  .recruit .btn-white:hover{background:var(--c-accent);color:#4a3a00}
+
+  /* ===== お知らせ ===== */
+  .news-list{border-top:1px solid var(--c-line)}
+  .news-item{display:flex;align-items:center;gap:24px;padding:22px 8px;border-bottom:1px solid var(--c-line);transition:.2s}
+  .news-item:hover{background:var(--c-bg2)}
+  .news-item time{color:var(--c-mute);font-size:.88rem;font-variant-numeric:tabular-nums;min-width:110px}
+  .news-cat{font-size:.72rem;font-weight:700;color:var(--c-secondary);border:1px solid var(--c-secondary);
+    padding:.2em .8em;border-radius:999px;min-width:76px;text-align:center}
+  .news-item p{flex:1;font-weight:500}
+  .news-more{text-align:center;margin-top:40px}
+
+  /* ===== 会社概要＋CTA ===== */
+  .about{background:var(--c-dark);color:#fff}
+  .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .about .en{color:var(--c-accent);font-weight:800;letter-spacing:.16em;font-size:.85rem}
+  .about h2{font-size:clamp(1.7rem,4vw,2.3rem);font-weight:800;margin:8px 0 20px}
+  .about p{opacity:.85;margin-bottom:26px}
+  .about dl{display:grid;grid-template-columns:auto 1fr;gap:0;border-top:1px solid rgba(255,255,255,.16)}
+  .about dt,.about dd{padding:15px 4px;border-bottom:1px solid rgba(255,255,255,.16)}
+  .about dt{font-weight:700;color:var(--c-accent);padding-right:28px;white-space:nowrap}
+  .about dd{opacity:.92}
+
+  /* ===== フッター ===== */
+  footer{background:#171d23;color:#c7ccd1;padding:64px 0 28px}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .foot-logo img{height:52px;margin-bottom:18px}
+  .foot-brand p{font-size:.86rem;opacity:.7;max-width:26em}
+  .foot-col h4{color:#fff;font-size:.82rem;letter-spacing:.1em;margin-bottom:16px;font-weight:700}
+  .foot-col a{display:block;font-size:.9rem;padding:6px 0;opacity:.8;transition:.2s}
+  .foot-col a:hover{opacity:1;color:var(--c-accent);padding-left:4px}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:24px;font-size:.8rem;opacity:.6}
+  .foot-bottom a:hover{color:var(--c-accent)}
+
+  /* ===== レスポンシブ ===== */
+  @media(max-width:900px){
+    .philo .wrap,.about .wrap{grid-template-columns:1fr;gap:36px}
+    .biz-grid,.work-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-top{grid-template-columns:1fr 1fr;gap:28px}
+    .foot-brand{grid-column:1/-1}
+  }
+  @media(max-width:768px){
+    section{padding:66px 0}
+    .nav-links{position:fixed;inset:76px 0 auto 0;flex-direction:column;background:#fff;
+      gap:0;padding:8px 0 20px;border-bottom:1px solid var(--c-line);box-shadow:var(--shadow);
+      transform:translateY(-140%);transition:.35s;opacity:0;pointer-events:none}
+    .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    .nav-links a.mn{width:100%;padding:14px 24px;border-bottom:1px solid var(--c-line)}
+    .nav-links a.mn::after{display:none}
+    .nav-links .btn{margin:14px 24px 0}
+    .hamburger{display:flex}
+    .hamburger.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.on span:nth-child(2){opacity:0}
+    .hamburger.on span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .hero{min-height:76vh}
+    .recruit .wrap{flex-direction:column;align-items:flex-start}
+  }
+  @media(max-width:520px){
+    .biz-grid,.work-grid{grid-template-columns:1fr}
+    .news-item{flex-wrap:wrap;gap:10px}
+    .news-item time{min-width:auto}
+    .news-item p{flex-basis:100%;order:3}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="陸中建設株式会社 トップ">
+      <img src="../../assets/brand/01光沢ロゴ_社名入り_RGB.png" alt="陸中建設株式会社">
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a class="mn" href="/company">会社情報</a>
+      <a class="mn" href="/business">事業内容</a>
+      <a class="mn" href="/case">施工実績</a>
+      <a class="mn" href="/news">お知らせ</a>
+      <a class="btn btn-primary" href="/contact">お問い合わせ</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニュー" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== ヒーロー ===== -->
+<section class="hero" style="padding:0">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">岩手県宮古市の総合建設業</span>
+    <h1>願いを、<br><span class="accent">築く。</span></h1>
+    <p class="lead">事業を通じて地域・人びとの「願いを築く」こと。<br>それが、陸中建設株式会社の使命です。</p>
+    <div class="cta-row">
+      <a class="btn btn-primary btn-arrow" href="/business">事業を見る</a>
+      <a class="btn btn-ghost" href="#recruit">採用情報</a>
+    </div>
+  </div>
+  <div class="scroll-cue">SCROLL<span></span></div>
+</section>
+
+<!-- ===== 理念帯 ===== -->
+<section class="philo">
+  <div class="wrap">
+    <div class="lead-box">
+      <h2>地域とともに、<br><em>未来をかたちに</em>。</h2>
+      <p>岩手県宮古市を拠点に、土木・建築から砕石、不動産まで。私たちは暮らしの土台となるインフラと空間を、確かな技術と誠実な仕事で築いてきました。人びとの「こうありたい」という願いに寄り添い、地域の未来を支え続けます。</p>
+    </div>
+    <div class="pic">
+      <img src="../../assets/brand/葉月の宮古市_着彩_rgb02_200701.jpg" alt="宮古市の街並み">
+    </div>
+  </div>
+</section>
+
+<!-- ===== 事業内容 ===== -->
+<section id="business">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="en">Our Business</span>
+      <h2><span class="bar"></span>事業内容</h2>
+    </div>
+    <div class="biz-grid">
+
+      <a class="biz-card" href="/business/architecture">
+        <div class="biz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#F08200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+        <h3>建築</h3>
+        <p>住宅から公共・産業施設まで。快適で長く使える建物をつくります。</p>
+        <span class="more">詳しく見る</span>
+      </a>
+
+      <a class="biz-card" href="/business/civilengineering">
+        <div class="biz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#F08200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17l4-8 5 5 4-7 7 10M2 21h20"/></svg></div>
+        <h3>土木</h3>
+        <p>道路・河川・造成など、暮らしを支える社会インフラを整備します。</p>
+        <span class="more">詳しく見る</span>
+      </a>
+
+      <a class="biz-card" href="/business/crushedstone">
+        <div class="biz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#F08200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 6-3 10H8L5 9z M9 9l3 3 3-3"/></svg></div>
+        <h3>砕石</h3>
+        <p>建設資材の要となる骨材を、自社採石場から安定供給します。</p>
+        <span class="more">詳しく見る</span>
+      </a>
+
+      <a class="biz-card" href="/business/realestate-1">
+        <div class="biz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#F08200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <h3>不動産</h3>
+        <p>土地・建物の有効活用をご提案。貸会議室の運営も行っています。</p>
+        <span class="more">詳しく見る</span>
+      </a>
+
+      <a class="biz-card" href="/business/industrialwaste">
+        <div class="biz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#F08200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg></div>
+        <h3>産業廃棄物</h3>
+        <p>適正な収集・運搬・処理で、循環型社会と地域の環境を守ります。</p>
+        <span class="more">詳しく見る</span>
+      </a>
+
+      <a class="biz-card" href="/business/others">
+        <div class="biz-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#F08200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/></svg></div>
+        <h3>その他事業</h3>
+        <p>地域のニーズに応じた幅広い事業で、暮らしの課題を解決します。</p>
+        <span class="more">詳しく見る</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 施工実績 ===== -->
+<section class="works">
+  <div class="wrap">
+    <div class="works-head">
+      <div class="sec-head" style="margin:0">
+        <span class="en">Works</span>
+        <h2><span class="bar"></span>施工実績</h2>
+      </div>
+      <a class="btn btn-outline btn-arrow" href="/case">実績一覧へ</a>
+    </div>
+    <div class="work-grid">
+      <!-- ▼プレースホルダ：STUDIO側でCMS「施工実績（case）」の最新3件に差し替え -->
+      <a class="work-card" href="/case">
+        <div class="work-thumb"><span>PHOTO</span></div>
+        <div class="work-body"><span class="work-tag">土木</span><h3>〇〇地区 道路改良工事</h3><time>2026.06</time></div>
+      </a>
+      <a class="work-card" href="/case">
+        <div class="work-thumb"><span>PHOTO</span></div>
+        <div class="work-body"><span class="work-tag">建築</span><h3>〇〇 新築工事</h3><time>2026.05</time></div>
+      </a>
+      <a class="work-card" href="/case">
+        <div class="work-thumb"><span>PHOTO</span></div>
+        <div class="work-body"><span class="work-tag">砕石</span><h3>〇〇採石場 出荷実績</h3><time>2026.04</time></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 採用CTA帯 ===== -->
+<!-- 採用専用ページは現状未存在（/hole-3 は貸会議室予約ページ）。採用ページ新設時に href を差し替える。 -->
+<section class="recruit" id="recruit">
+  <div class="wrap">
+    <div>
+      <span class="en">Recruit</span>
+      <h2>地域の未来を、<br>一緒に築く仲間を。</h2>
+      <p>陸中建設は、次代を担う若い力を育てることに力を注いでいます。宮古で働き、地域とともに成長したいあなたを待っています。</p>
+    </div>
+    <a class="btn btn-white btn-arrow" href="/contact">採用について問い合わせる</a>
+  </div>
+</section>
+
+<!-- ===== お知らせ ===== -->
+<section id="news">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="en">News</span>
+      <h2><span class="bar"></span>お知らせ</h2>
+    </div>
+    <div class="news-list">
+      <!-- ▼プレースホルダ：STUDIO側でCMS「お知らせ（news）」の最新3件に差し替え -->
+      <a class="news-item" href="/news">
+        <time>2026.07.01</time><span class="news-cat">お知らせ</span>
+        <p>夏季休業のご案内について</p>
+      </a>
+      <a class="news-item" href="/news">
+        <time>2026.06.15</time><span class="news-cat">採用</span>
+        <p>2027年度 新卒採用に関するお知らせ</p>
+      </a>
+      <a class="news-item" href="/news">
+        <time>2026.06.01</time><span class="news-cat">実績</span>
+        <p>〇〇工事が完了しました</p>
+      </a>
+    </div>
+    <div class="news-more">
+      <a class="btn btn-outline btn-arrow" href="/news">お知らせ一覧へ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 会社概要＋CTA ===== -->
+<section class="about" id="company">
+  <div class="wrap">
+    <div>
+      <span class="en">Company</span>
+      <h2>陸中建設株式会社</h2>
+      <p>岩手県宮古市を拠点に、地域の暮らしとインフラを支える総合建設業として歩んでいます。詳しい会社情報・沿革は会社情報ページをご覧ください。</p>
+      <a class="btn btn-primary btn-arrow" href="/company">会社情報を見る</a>
+    </div>
+    <dl>
+      <!-- 資本金・売上・従業員数などの数値は確定情報を会社情報ページに集約（トップには断定表示しない） -->
+      <dt>商号</dt><dd>陸中建設株式会社</dd>
+      <dt>所在地</dt><dd>岩手県宮古市</dd>
+      <dt>事業内容</dt><dd>建築／土木／砕石／不動産／産業廃棄物 ほか</dd>
+      <dt>お問い合わせ</dt><dd><a href="/contact" style="color:var(--c-accent);text-decoration:underline">お問い合わせフォームへ</a></dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-logo"><img src="../../assets/brand/06マットロゴ_社名抜き_RGB.png" alt="陸中建設株式会社"></div>
+        <p>事業を通じて地域・人びとの「願いを築く」。岩手県宮古市の総合建設業、陸中建設株式会社です。</p>
+      </div>
+      <div class="foot-col">
+        <h4>事業・実績</h4>
+        <a href="/business">事業内容</a>
+        <a href="/case">施工実績</a>
+        <a href="/business/crushedstone">砕石事業</a>
+        <a href="/business/realestate-1">不動産</a>
+      </div>
+      <div class="foot-col">
+        <h4>会社情報</h4>
+        <a href="/company">会社情報</a>
+        <a href="/company/history">沿革</a>
+        <a href="/news">お知らせ</a>
+        <a href="/contact">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 陸中建設株式会社</span>
+      <a href="/privacypolicy">プライバシーポリシー</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ハンバーガーメニュー開閉のみ（見本用の最小JS）
+  var h=document.getElementById('hamburger'),n=document.getElementById('navLinks');
+  h.addEventListener('click',function(){
+    var open=n.classList.toggle('open');
+    h.classList.toggle('on',open);
+    h.setAttribute('aria-expanded',open);
+  });
+  n.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){n.classList.remove('open');h.classList.remove('on');});
+  });
+</script>
+</body>
+</html>
