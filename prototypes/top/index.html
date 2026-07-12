@@ -210,9 +210,31 @@
     .news-item time{min-width:auto}
     .news-item p{flex-basis:100%;order:3}
   }
+
+  /* ===== ローディング（初回のみ・ロゴフェード） ===== */
+  #loader{position:fixed;inset:0;z-index:9999;background:#fff;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:26px;transition:opacity .6s ease}
+  #loader.hide{opacity:0;pointer-events:none}
+  .loader-logo{width:min(220px,52vw);animation:logoIn .8s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes logoIn{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+  /* ブランドカラーの回転リング */
+  .loader-ring{width:44px;height:44px;border-radius:50%;
+    border:3px solid var(--c-line);border-top-color:var(--c-primary);border-right-color:var(--c-secondary);
+    animation:spin .9s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  /* prefers-reduced-motion 配慮：動きを抑える */
+  @media(prefers-reduced-motion:reduce){
+    .loader-logo{animation:none}.loader-ring{animation-duration:2s}
+  }
 </style>
 </head>
 <body>
+
+<!-- ===== ローディング（初回アクセス時のみ表示・ロゴフェード） ===== -->
+<div id="loader" role="status" aria-label="読み込み中">
+  <img class="loader-logo" src="../../assets/brand/01光沢ロゴ_社名入り_RGB.png" alt="陸中建設株式会社">
+  <div class="loader-ring" aria-hidden="true"></div>
+</div>
 
 <!-- ===== ヘッダー ===== -->
 <header>
@@ -434,6 +456,29 @@
 </footer>
 
 <script>
+  // ===== ローディング：初回アクセス時のみ表示（同一セッションでは2回目以降スキップ） =====
+  (function(){
+    var el=document.getElementById('loader');
+    if(!el) return;
+    var seen=false;
+    try{ seen=sessionStorage.getItem('rikuchu_loaded')==='1'; }catch(e){}
+    if(seen){ el.parentNode.removeChild(el); return; }  // 2回目以降は即非表示
+    document.body.style.overflow='hidden';               // 表示中はスクロール抑止
+    var start=Date.now(), MIN=1100;                      // 最低表示時間（チラつき防止）
+    function done(){
+      var wait=Math.max(0, MIN-(Date.now()-start));
+      setTimeout(function(){
+        el.classList.add('hide');
+        document.body.style.overflow='';
+        try{ sessionStorage.setItem('rikuchu_loaded','1'); }catch(e){}
+        setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); },700);
+      }, wait);
+    }
+    if(document.readyState==='complete') done();
+    else window.addEventListener('load', done);
+    setTimeout(done, 6000);                               // 保険：6秒でフェイルセーフ解除
+  })();
+
   // ハンバーガーメニュー開閉のみ（見本用の最小JS）
   var h=document.getElementById('hamburger'),n=document.getElementById('navLinks');
   h.addEventListener('click',function(){
